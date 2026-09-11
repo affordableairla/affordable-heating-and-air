@@ -20,7 +20,6 @@
         :root {
             --green: #0c6b3c;
             --dark-green: #07552f;
-            --light-green: #8fc63d;
             --lime: #a5ce39;
             --dark: #17251f;
             --text: #333333;
@@ -82,9 +81,9 @@
             font-weight: 700;
         }
 
-        /* HEADER */
+        /* STANDARD HEADER */
 
-        header {
+        .site-header {
             background: #fff;
             border-bottom: 1px solid var(--border);
             position: sticky;
@@ -92,8 +91,8 @@
             z-index: 1000;
         }
 
-        .nav {
-            min-height: 82px;
+        .header-inner {
+            min-height: 110px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -103,35 +102,37 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            flex-shrink: 0;
         }
 
         .logo img {
-            width: 150px;
+            width: 145px;
             height: auto;
             object-fit: contain;
         }
 
-        .nav-links {
+        .main-nav {
             display: flex;
             align-items: center;
-            gap: 22px;
+            justify-content: flex-end;
+            gap: 20px;
             font-size: 15px;
             font-weight: 700;
         }
 
-        .nav-links a:hover {
+        .main-nav a:hover {
             color: var(--green);
         }
 
-        .nav-button {
+        .phone-button {
             background: var(--green);
             color: #fff !important;
-            padding: 11px 18px;
+            padding: 11px 17px;
             border-radius: 7px;
+            white-space: nowrap;
         }
 
-        .nav-button:hover {
+        .phone-button:hover {
             background: var(--dark-green);
         }
 
@@ -142,7 +143,7 @@
                 linear-gradient(90deg, rgba(5, 75, 41, 0.96), rgba(7, 95, 52, 0.87)),
                 url("images/hero.jpg") center/cover no-repeat;
             color: #fff;
-            padding: 85px 0;
+            padding: 80px 0;
         }
 
         .hero-grid {
@@ -153,7 +154,7 @@
         }
 
         .hero-content h1 {
-            font-size: clamp(38px, 5vw, 64px);
+            font-size: clamp(38px, 5vw, 62px);
             line-height: 1.08;
             margin-bottom: 22px;
             letter-spacing: -1.5px;
@@ -261,7 +262,7 @@
             text-align: center;
         }
 
-        .section-heading .eyebrow {
+        .eyebrow {
             color: var(--green);
             font-weight: 800;
             text-transform: uppercase;
@@ -465,6 +466,65 @@
             font-size: 15px;
         }
 
+        /* LOCATION + MAP */
+
+        .location {
+            background: #fff;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 35px;
+            align-items: stretch;
+        }
+
+        .location-card {
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .location-card h3 {
+            color: var(--green);
+            margin-bottom: 15px;
+            font-size: 23px;
+        }
+
+        .location-card p {
+            margin-bottom: 12px;
+        }
+
+        .map-wrapper {
+            border-radius: 13px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            min-height: 100%;
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: 0;
+            display: block;
+        }
+
+        .map-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--green);
+            font-weight: 800;
+        }
+
+        /* KEYWORD PAGES */
+
+        .resources {
+            background: #fff;
+        }
+
         /* CTA */
 
         .cta {
@@ -492,42 +552,6 @@
             color: var(--lime);
             display: inline-block;
             margin-bottom: 25px;
-        }
-
-        /* LOCATION */
-
-        .location {
-            background: #fff;
-        }
-
-        .location-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 35px;
-        }
-
-        .location-card {
-            border: 1px solid var(--border);
-            border-radius: 13px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-        }
-
-        .location-card h3 {
-            color: var(--green);
-            margin-bottom: 12px;
-            font-size: 23px;
-        }
-
-        .location-card p {
-            margin-bottom: 10px;
-        }
-
-        .map-link {
-            display: inline-block;
-            margin-top: 12px;
-            color: var(--green);
-            font-weight: 800;
         }
 
         /* FAQ */
@@ -615,10 +639,15 @@
 
         /* MOBILE */
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
 
-            .nav-links {
-                display: none;
+            .main-nav {
+                gap: 12px;
+                font-size: 13px;
+            }
+
+            .header-inner {
+                min-height: 95px;
             }
 
             .hero-grid,
@@ -640,16 +669,16 @@
                 height: auto;
             }
 
-            .about-image img {
-                height: 350px;
-            }
-
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .map-wrapper iframe {
+                min-height: 380px;
+            }
         }
 
-        @media (max-width: 620px) {
+        @media (max-width: 700px) {
 
             .topbar-inner {
                 flex-direction: column;
@@ -657,12 +686,21 @@
                 text-align: center;
             }
 
-            .nav {
-                min-height: 70px;
+            .header-inner {
+                min-height: 78px;
             }
 
             .logo img {
                 width: 125px;
+            }
+
+            .main-nav a:not(.phone-button) {
+                display: none;
+            }
+
+            .phone-button {
+                padding: 9px 12px;
+                font-size: 12px;
             }
 
             .hero-content h1 {
@@ -671,10 +709,6 @@
 
             .hero-content p {
                 font-size: 17px;
-            }
-
-            .hero-image img {
-                height: auto;
             }
 
             .trust-grid {
@@ -708,14 +742,20 @@
             .button {
                 text-align: center;
             }
+
+            .map-wrapper iframe {
+                min-height: 350px;
+            }
         }
     </style>
 
-    <!-- LocalBusiness structured data -->
+    <!-- STRUCTURED DATA -->
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "HVACBusiness",
+        "@id": "https://affordable-heating-and-air.pages.dev/#business",
         "name": "Affordable Heating and Air",
         "url": "https://affordableairla.com/",
         "telephone": "+1-818-722-1332",
@@ -739,80 +779,158 @@
         ],
         "sameAs": [
             "https://affordableairla.com/"
-        ]
+        ],
+        "hasMap": "https://maps.app.goo.gl/AmnAG3GCtMLZFQca6"
     }
     </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Affordable Heating and Air | Los Angeles HVAC Services",
+        "url": "https://affordable-heating-and-air.pages.dev/",
+        "about": {
+            "@id": "https://affordable-heating-and-air.pages.dev/#business"
+        }
+    }
+    </script>
+
 </head>
 
 <body>
 
     <!-- TOP BAR -->
+
     <div class="topbar">
         <div class="container topbar-inner">
             <span>24/7 Emergency HVAC Service in Los Angeles & Ventura Counties</span>
-            <a href="tel:+18187221332">Call (818) 722-1332</a>
+
+            <a href="tel:+18187221332">
+                Call (818) 722-1332
+            </a>
         </div>
     </div>
 
-    <!-- HEADER -->
-    <header>
-        <div class="container nav">
+
+    <!-- STANDARD HEADER -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
 
             <a href="index.html" class="logo">
-                <img src="images/logo.jpg" alt="Affordable Heating and Air logo">
+                <img
+                    src="images/logo.jpg"
+                    alt="Affordable Heating and Air"
+                >
             </a>
 
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="hvac-los-angeles.html">HVAC Los Angeles</a>
-                <a href="hvac-repair-los-angeles.html">HVAC Repair</a>
-                <a href="los-angeles-hvac-services.html">Services</a>
-                <a href="https://affordableairla.com/" target="_blank" rel="noopener noreferrer">Official Website</a>
-                <a href="tel:+18187221332" class="nav-button">Call Now</a>
+            <nav class="main-nav" aria-label="Main navigation">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="hvac-los-angeles.html">
+                    HVAC Los Angeles
+                </a>
+
+                <a href="hvac-repair-los-angeles.html">
+                    HVAC Repair
+                </a>
+
+                <a href="affordable-hvac-services.html">
+                    Affordable HVAC
+                </a>
+
+                <a
+                    href="https://affordableairla.com/contact-us/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Contact
+                </a>
+
+                <a
+                    href="tel:+18187221332"
+                    class="phone-button"
+                >
+                    Call 818-722-1332
+                </a>
+
             </nav>
 
         </div>
+
     </header>
 
-    <!-- HERO -->
+
     <main>
 
+
+        <!-- HERO -->
+
         <section class="hero">
+
             <div class="container hero-grid">
 
                 <div class="hero-content">
-                    <h1>Reliable <span>HVAC Services</span> in Los Angeles</h1>
+
+                    <h1>
+                        Reliable <span>HVAC Services</span>
+                        in Los Angeles
+                    </h1>
 
                     <p>
-                        Affordable Heating and Air provides professional heating,
-                        cooling, repair, maintenance, and installation services
-                        for homes and businesses across Los Angeles County and
-                        Ventura County.
+                        Affordable Heating and Air provides professional
+                        heating, cooling, repair, maintenance, and installation
+                        services for homes and businesses across Los Angeles
+                        County and Ventura County.
                     </p>
 
                     <div class="hero-buttons">
-                        <a href="tel:+18187221332" class="button button-primary">
+
+                        <a
+                            href="https://affordableairla.com/book-an-appointment/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="button button-primary"
+                        >
+                            Request Service
+                        </a>
+
+                        <a
+                            href="tel:+18187221332"
+                            class="button button-light"
+                        >
                             Call (818) 722-1332
                         </a>
 
-                        <a href="https://affordableairla.com/" target="_blank"
-                           rel="noopener noreferrer" class="button button-light">
-                            Visit Official Website
-                        </a>
                     </div>
+
                 </div>
 
+
                 <div class="hero-image">
-                    <img src="images/hero.jpg"
-                         alt="Affordable Heating and Air HVAC team and equipment"
-                         loading="eager">
+
+                    <img
+                        src="images/hero.jpg"
+                        alt="Affordable Heating and Air HVAC services"
+                        loading="eager"
+                    >
+
                 </div>
 
             </div>
+
         </section>
 
-        <!-- TRUST -->
+
+        <!-- TRUST BAR -->
+
         <section class="trust-bar">
+
             <div class="container trust-grid">
 
                 <div class="trust-item">
@@ -836,183 +954,276 @@
                 </div>
 
             </div>
+
         </section>
 
+
         <!-- SERVICES -->
+
         <section class="services">
+
             <div class="container">
 
                 <div class="section-heading">
-                    <div class="eyebrow">HVAC Services</div>
 
-                    <h2>Complete Heating & Cooling Services</h2>
+                    <div class="eyebrow">
+                        HVAC Services
+                    </div>
+
+                    <h2>
+                        Complete Heating & Cooling Services
+                    </h2>
 
                     <p>
-                        From repairs and maintenance to new system installation,
                         Affordable Heating and Air provides practical HVAC
-                        solutions for Southern California properties.
+                        solutions for residential and commercial properties
+                        throughout Los Angeles and Ventura Counties.
                     </p>
+
                 </div>
+
 
                 <div class="service-grid">
 
+
                     <article class="service-card">
+
                         <div class="service-icon">❄</div>
 
-                        <h3>Air Conditioning Services</h3>
+                        <h3>
+                            Air Conditioning Services
+                        </h3>
 
                         <p>
-                            Professional AC repair, maintenance, installation,
-                            and replacement services for Los Angeles homes and
-                            businesses.
+                            AC repair, maintenance, installation, and
+                            replacement services for homes and businesses.
                         </p>
 
-                        <a href="https://affordableairla.com/air-conditioning-service/"
-                           target="_blank" rel="noopener noreferrer">
+                        <a
+                            href="https://affordableairla.com/air-conditioning-service/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             Explore AC Services →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
+
                         <div class="service-icon">♨</div>
 
-                        <h3>Heating Services</h3>
+                        <h3>
+                            Heating Services
+                        </h3>
 
                         <p>
                             Heating repair, maintenance, installation, and
-                            replacement solutions designed for year-round
-                            indoor comfort.
+                            replacement solutions for year-round comfort.
                         </p>
 
-                        <a href="https://affordableairla.com/heating-furnace-repair/"
-                           target="_blank" rel="noopener noreferrer">
+                        <a
+                            href="https://affordableairla.com/heating-furnace-repair/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             Explore Heating Services →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
+
                         <div class="service-icon">🔧</div>
 
-                        <h3>HVAC Repair</h3>
+                        <h3>
+                            HVAC Repair
+                        </h3>
 
                         <p>
                             Professional troubleshooting and repair for
-                            residential HVAC systems, including urgent
-                            emergency service.
+                            residential HVAC systems, including emergency
+                            service.
                         </p>
 
                         <a href="hvac-repair-los-angeles.html">
                             HVAC Repair Los Angeles →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
+
                         <div class="service-icon">⚙</div>
 
-                        <h3>HVAC Installation</h3>
+                        <h3>
+                            HVAC Installation
+                        </h3>
 
                         <p>
                             New HVAC system installation and replacement
                             solutions for improved comfort and efficiency.
                         </p>
 
-                        <a href="https://affordableairla.com/air-conditioning-service/ac-installation/"
-                           target="_blank" rel="noopener noreferrer">
+                        <a
+                            href="https://affordableairla.com/air-conditioning-service/ac-installation/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             Explore Installation →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
+
                         <div class="service-icon">✓</div>
 
-                        <h3>HVAC Maintenance</h3>
+                        <h3>
+                            HVAC Maintenance
+                        </h3>
 
                         <p>
-                            Preventive maintenance helps identify developing
+                            Preventive maintenance can help identify developing
                             problems and keep heating and cooling systems
                             operating efficiently.
                         </p>
 
-                        <a href="https://affordableairla.com/hvac-maintenance-los-angeles/"
-                           target="_blank" rel="noopener noreferrer">
+                        <a
+                            href="https://affordableairla.com/hvac-maintenance-los-angeles/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             Explore Maintenance →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
+
                         <div class="service-icon">⚡</div>
 
-                        <h3>Emergency HVAC Service</h3>
+                        <h3>
+                            Emergency HVAC Service
+                        </h3>
 
                         <p>
-                            HVAC emergencies can happen at any time. Emergency
-                            assistance is available 24 hours a day, 7 days a week.
+                            Emergency HVAC assistance is available 24 hours
+                            a day, 7 days a week.
                         </p>
 
                         <a href="tel:+18187221332">
                             Call for Emergency Service →
                         </a>
+
                     </article>
+
 
                 </div>
 
             </div>
+
         </section>
 
+
         <!-- ABOUT -->
+
         <section class="about">
+
             <div class="container about-grid">
 
+
                 <div class="about-image">
-                    <img src="images/team.jpg"
-                         alt="Affordable Heating and Air HVAC team"
-                         loading="lazy">
+
+                    <img
+                        src="images/team.jpg"
+                        alt="Affordable Heating and Air team"
+                        loading="lazy"
+                    >
+
                 </div>
+
 
                 <div class="about-content">
 
-                    <h2>Affordable Heating and Air</h2>
+                    <h2>
+                        Affordable Heating and Air
+                    </h2>
 
                     <p>
                         Affordable Heating and Air is a woman-owned HVAC
-                        contractor serving residential and commercial customers
-                        across Los Angeles and Ventura Counties.
+                        contractor serving residential and commercial
+                        customers across Los Angeles and Ventura Counties.
                     </p>
 
                     <p>
-                        The company operates from its Chatsworth headquarters
-                        and provides heating, cooling, repair, installation,
-                        maintenance, and indoor comfort services throughout the
-                        communities it serves.
+                        The company provides heating, cooling, repair,
+                        installation, maintenance, and indoor comfort services
+                        throughout the communities it serves.
                     </p>
 
+
                     <ul class="check-list">
-                        <li>C-20 licensed HVAC contractor</li>
-                        <li>California CSLB License #1081403</li>
-                        <li>NATE-certified technicians</li>
-                        <li>EPA-approved / certified technicians</li>
-                        <li>20+ years of combined HVAC experience</li>
-                        <li>24/7 emergency HVAC service</li>
+
+                        <li>
+                            C-20 licensed HVAC contractor
+                        </li>
+
+                        <li>
+                            California CSLB License #1081403
+                        </li>
+
+                        <li>
+                            NATE-certified technicians
+                        </li>
+
+                        <li>
+                            EPA-certified technicians
+                        </li>
+
+                        <li>
+                            20+ years of combined HVAC experience
+                        </li>
+
+                        <li>
+                            24/7 emergency HVAC service
+                        </li>
+
                     </ul>
 
-                    <a href="https://affordableairla.com/about-us/"
-                       target="_blank" rel="noopener noreferrer"
-                       class="button button-primary">
-                        Learn More About the Company
+
+                    <a
+                        href="https://affordableairla.com/about-us/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="button button-primary"
+                    >
+                        Learn More About Affordable Heating and Air
                     </a>
 
                 </div>
 
             </div>
+
         </section>
 
+
         <!-- SERVICE AREAS -->
+
         <section class="areas">
+
             <div class="container">
 
                 <div class="areas-box">
 
-                    <h2>HVAC Service Areas</h2>
+                    <h2>
+                        HVAC Service Areas
+                    </h2>
 
                     <p>
                         Affordable Heating and Air serves customers throughout
@@ -1021,10 +1232,15 @@
                         company to confirm coverage for your address.
                     </p>
 
+
                     <div class="area-columns">
 
+
                         <div class="area-column">
-                            <h3>Los Angeles County</h3>
+
+                            <h3>
+                                Los Angeles County
+                            </h3>
 
                             <p>
                                 Chatsworth, Northridge, Granada Hills,
@@ -1037,10 +1253,15 @@
                                 Santa Monica, Culver City, Downtown Los Angeles
                                 and other Los Angeles County communities.
                             </p>
+
                         </div>
 
+
                         <div class="area-column">
-                            <h3>Ventura County</h3>
+
+                            <h3>
+                                Ventura County
+                            </h3>
 
                             <p>
                                 Simi Valley, Moorpark, Thousand Oaks,
@@ -1049,307 +1270,460 @@
                                 Camarillo and Port Hueneme, through the
                                 company's Simi Valley branch.
                             </p>
+
                         </div>
+
 
                     </div>
 
                 </div>
 
             </div>
+
         </section>
 
+
         <!-- WHY CHOOSE -->
+
         <section class="why">
+
             <div class="container">
 
                 <div class="section-heading">
-                    <div class="eyebrow">Why Choose Us</div>
 
-                    <h2>Professional HVAC Service With a Focus on Value</h2>
+                    <div class="eyebrow">
+                        Why Choose Us
+                    </div>
+
+                    <h2>
+                        Professional HVAC Service With a Focus on Value
+                    </h2>
 
                     <p>
                         Reliable service starts with qualified technicians,
                         clear communication, and solutions appropriate for
                         each property's needs.
                     </p>
+
                 </div>
+
 
                 <div class="why-grid">
 
-                    <article class="why-card">
-                        <h3>Licensed HVAC Contractor</h3>
-                        <p>
-                            Affordable Heating and Air is licensed as a
-                            California C-20 HVAC contractor under CSLB
-                            #1081403.
-                        </p>
-                    </article>
 
                     <article class="why-card">
-                        <h3>Certified Technicians</h3>
+
+                        <h3>
+                            Licensed HVAC Contractor
+                        </h3>
+
+                        <p>
+                            Affordable Heating and Air is a California C-20
+                            HVAC contractor under CSLB #1081403.
+                        </p>
+
+                    </article>
+
+
+                    <article class="why-card">
+
+                        <h3>
+                            Certified Technicians
+                        </h3>
+
                         <p>
                             The company states that its technicians include
-                            NATE-certified and EPA-certified/approved
-                            professionals.
+                            NATE-certified and EPA-certified professionals.
                         </p>
+
                     </article>
 
+
                     <article class="why-card">
-                        <h3>24/7 Emergency Help</h3>
+
+                        <h3>
+                            24/7 Emergency Help
+                        </h3>
+
                         <p>
                             Emergency HVAC assistance is available around
-                            the clock for customers who need urgent heating
-                            or cooling service.
+                            the clock for urgent heating or cooling needs.
                         </p>
+
                     </article>
 
+
                     <article class="why-card">
-                        <h3>Local Service</h3>
+
+                        <h3>
+                            Local Service
+                        </h3>
+
                         <p>
                             The Chatsworth headquarters serves Los Angeles
                             County, while the Simi Valley branch serves
                             Ventura County.
                         </p>
+
                     </article>
 
+
                     <article class="why-card">
-                        <h3>Clear Estimates</h3>
+
+                        <h3>
+                            Residential & Commercial
+                        </h3>
+
                         <p>
-                            The company provides pricing and estimates before
-                            work begins so customers can understand the
-                            proposed service.
+                            HVAC services are available for both residential
+                            and commercial customers.
                         </p>
+
                     </article>
 
+
                     <article class="why-card">
-                        <h3>Strong Customer Reputation</h3>
+
+                        <h3>
+                            Strong Customer Reputation
+                        </h3>
+
                         <p>
                             Affordable Heating and Air currently reports a
                             4.9-star rating from more than 1,600 Google reviews.
                         </p>
+
                     </article>
+
 
                 </div>
 
             </div>
+
         </section>
 
+
         <!-- KEYWORD PAGES -->
-        <section class="services">
+
+        <section class="resources">
+
             <div class="container">
 
                 <div class="section-heading">
-                    <div class="eyebrow">Explore HVAC Resources</div>
 
-                    <h2>Los Angeles HVAC Information</h2>
+                    <div class="eyebrow">
+                        Explore HVAC Resources
+                    </div>
+
+                    <h2>
+                        Los Angeles HVAC Information
+                    </h2>
 
                     <p>
                         Explore our dedicated pages covering HVAC services,
                         repair, and local heating and cooling solutions.
                     </p>
+
                 </div>
+
 
                 <div class="service-grid">
 
+
                     <article class="service-card">
-                        <h3>HVAC Los Angeles</h3>
+
+                        <h3>
+                            HVAC Los Angeles
+                        </h3>
+
                         <p>
                             Learn more about HVAC services available throughout
                             Los Angeles.
                         </p>
+
                         <a href="hvac-los-angeles.html">
                             View Page →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
-                        <h3>HVAC in Los Angeles</h3>
+
+                        <h3>
+                            HVAC in Los Angeles
+                        </h3>
+
                         <p>
-                            Information about heating and cooling solutions for
-                            Los Angeles properties.
+                            Information about heating and cooling solutions
+                            for Los Angeles properties.
                         </p>
+
                         <a href="hvac-in-los-angeles.html">
                             View Page →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
-                        <h3>HVAC Repair Los Angeles</h3>
+
+                        <h3>
+                            HVAC Repair Los Angeles
+                        </h3>
+
                         <p>
-                            Learn about HVAC troubleshooting and repair services
-                            in Los Angeles.
+                            Learn about HVAC troubleshooting and repair
+                            services in Los Angeles.
                         </p>
+
                         <a href="hvac-repair-los-angeles.html">
                             View Page →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
-                        <h3>Los Angeles HVAC Repair</h3>
+
+                        <h3>
+                            Los Angeles HVAC Repair
+                        </h3>
+
                         <p>
                             Explore information about professional HVAC repair
                             for Los Angeles homeowners.
                         </p>
+
                         <a href="los-angeles-hvac-repair.html">
                             View Page →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
-                        <h3>Affordable HVAC Services</h3>
+
+                        <h3>
+                            Affordable HVAC Services
+                        </h3>
+
                         <p>
                             Learn about practical and value-focused HVAC
                             services from Affordable Heating and Air.
                         </p>
+
                         <a href="affordable-hvac-services.html">
                             View Page →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
-                        <h3>Los Angeles HVAC Services</h3>
+
+                        <h3>
+                            Los Angeles HVAC Services
+                        </h3>
+
                         <p>
                             Explore heating, cooling, maintenance, repair,
                             and installation services.
                         </p>
+
                         <a href="los-angeles-hvac-services.html">
                             View Page →
                         </a>
+
                     </article>
 
+
                     <article class="service-card">
-                        <h3>HVAC Services Los Angeles</h3>
+
+                        <h3>
+                            HVAC Services Los Angeles
+                        </h3>
+
                         <p>
                             Find information about comprehensive HVAC solutions
                             across Los Angeles County.
                         </p>
+
                         <a href="hvac-services-los-angeles.html">
                             View Page →
                         </a>
+
                     </article>
+
 
                 </div>
 
             </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta">
-
-            <div class="container">
-
-                <h2>Need HVAC Service in Los Angeles?</h2>
-
-                <p>
-                    Call Affordable Heating and Air for heating, cooling,
-                    repair, installation, maintenance, and emergency HVAC
-                    assistance.
-                </p>
-
-                <a href="tel:+18187221332" class="phone">
-                    (818) 722-1332
-                </a>
-
-                <br>
-
-                <a href="https://affordableairla.com/book-an-appointment/"
-                   target="_blank" rel="noopener noreferrer"
-                   class="button button-primary">
-                    Book an Appointment
-                </a>
-
-            </div>
 
         </section>
 
-        <!-- LOCATION -->
+
+        <!-- LOCATION + EMBEDDED MAP -->
+
         <section class="location">
+
             <div class="container">
 
                 <div class="section-heading">
-                    <div class="eyebrow">Los Angeles Headquarters</div>
 
-                    <h2>Affordable Heating and Air in Chatsworth</h2>
+                    <div class="eyebrow">
+                        Los Angeles Headquarters
+                    </div>
+
+                    <h2>
+                        Affordable Heating and Air in Chatsworth
+                    </h2>
 
                     <p>
                         The Los Angeles County headquarters is located in
                         Chatsworth and serves customers throughout the
                         surrounding area.
                     </p>
+
                 </div>
+
 
                 <div class="location-grid">
 
+
                     <div class="location-card">
 
-                        <h3>Los Angeles County Office</h3>
+                        <h3>
+                            Affordable Heating and Air
+                        </h3>
 
                         <p>
-                            <strong>Affordable Heating and Air</strong>
+                            <strong>
+                                9601 Cozycroft Ave Unit 1
+                            </strong>
                         </p>
 
                         <p>
-                            9601 Cozycroft Ave Unit 1<br>
                             Chatsworth, CA 91311<br>
                             United States
                         </p>
 
                         <p>
-                            <strong>Phone:</strong>
-                            <a href="tel:+18187221332">(818) 722-1332</a>
+                            <strong>
+                                Phone:
+                            </strong>
+
+                            <a href="tel:+18187221332">
+                                (818) 722-1332
+                            </a>
                         </p>
 
                         <p>
-                            <strong>License:</strong> C-20 / CSLB #1081403
+                            <strong>
+                                License:
+                            </strong>
+
+                            C-20 / CSLB #1081403
                         </p>
 
-                        <a href="https://maps.app.goo.gl/AmnAG3GCtMLZFQca6"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="map-link">
-                            View Location on Google Maps →
+                        <a
+                            href="https://maps.app.goo.gl/AmnAG3GCtMLZFQca6"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="map-link"
+                        >
+                            Get Directions on Google Maps →
                         </a>
 
                     </div>
 
-                    <div class="location-card">
 
-                        <h3>Official Website</h3>
+                    <div class="map-wrapper">
 
-                        <p>
-                            For appointments, service requests, company
-                            information, and additional HVAC resources, visit
-                            the official Affordable Heating and Air website.
-                        </p>
-
-                        <a href="https://affordableairla.com/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="button button-primary">
-                            Visit affordableairla.com
-                        </a>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3298.14898958705!2d-118.58259269999998!3d34.244741700000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c29fb8714c5e3f%3A0x2f6d896820c6a84e!2sAffordable%20Heating%20and%20Air!5e0!3m2!1sen!2sin!4v1789116080225!5m2!1sen!2sin"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="Affordable Heating and Air location in Chatsworth"
+                        ></iframe>
 
                     </div>
+
 
                 </div>
 
             </div>
+
         </section>
 
+
+        <!-- CTA -->
+
+        <section class="cta">
+
+            <div class="container">
+
+                <h2>
+                    Need HVAC Service in Los Angeles?
+                </h2>
+
+                <p>
+                    Contact Affordable Heating and Air for heating, cooling,
+                    repair, installation, maintenance, and emergency HVAC
+                    assistance.
+                </p>
+
+                <a
+                    href="tel:+18187221332"
+                    class="phone"
+                >
+                    (818) 722-1332
+                </a>
+
+                <br>
+
+                <a
+                    href="https://affordableairla.com/book-an-appointment/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button button-primary"
+                >
+                    Request Service
+                </a>
+
+            </div>
+
+        </section>
+
+
         <!-- FAQ -->
+
         <section class="faq">
+
             <div class="container">
 
                 <div class="section-heading">
-                    <div class="eyebrow">Frequently Asked Questions</div>
 
-                    <h2>HVAC Questions for Los Angeles Homeowners</h2>
+                    <div class="eyebrow">
+                        Frequently Asked Questions
+                    </div>
+
+                    <h2>
+                        HVAC Questions for Los Angeles Homeowners
+                    </h2>
+
                 </div>
+
 
                 <div class="faq-list">
 
+
                     <details>
-                        <summary>What HVAC services does Affordable Heating and Air provide?</summary>
+
+                        <summary>
+                            What HVAC services does Affordable Heating and Air provide?
+                        </summary>
 
                         <p>
                             Affordable Heating and Air provides heating and
@@ -1358,61 +1732,91 @@
                             services for customers in Los Angeles and Ventura
                             Counties.
                         </p>
+
                     </details>
 
+
                     <details>
-                        <summary>Does Affordable Heating and Air offer emergency HVAC service?</summary>
+
+                        <summary>
+                            Does Affordable Heating and Air offer emergency HVAC service?
+                        </summary>
 
                         <p>
-                            Yes. The company states that emergency HVAC service
-                            is available 24 hours a day, 7 days a week.
+                            Yes. Emergency HVAC service is available
+                            24 hours a day, 7 days a week.
                         </p>
+
                     </details>
 
+
                     <details>
-                        <summary>Where is Affordable Heating and Air located?</summary>
+
+                        <summary>
+                            Where is Affordable Heating and Air located?
+                        </summary>
 
                         <p>
                             The Los Angeles County headquarters is located at
                             9601 Cozycroft Ave Unit 1, Chatsworth, CA 91311.
                         </p>
+
                     </details>
 
+
                     <details>
-                        <summary>What areas does Affordable Heating and Air serve?</summary>
+
+                        <summary>
+                            What areas does Affordable Heating and Air serve?
+                        </summary>
 
                         <p>
-                            The company serves Los Angeles County and Ventura
-                            County, including communities throughout the
-                            San Fernando Valley and surrounding areas.
+                            Affordable Heating and Air serves Los Angeles
+                            County and Ventura County, including communities
+                            throughout the San Fernando Valley and surrounding
+                            areas.
                         </p>
+
                     </details>
 
+
                     <details>
-                        <summary>Is Affordable Heating and Air licensed?</summary>
+
+                        <summary>
+                            Is Affordable Heating and Air licensed?
+                        </summary>
 
                         <p>
                             Yes. Affordable Heating and Air is a California
                             C-20 licensed HVAC contractor, CSLB #1081403.
                         </p>
+
                     </details>
+
 
                 </div>
 
             </div>
+
         </section>
+
 
     </main>
 
+
     <!-- FOOTER -->
+
     <footer>
 
         <div class="container footer-grid">
 
+
             <div class="footer-logo">
 
-                <img src="images/logo.jpg"
-                     alt="Affordable Heating and Air">
+                <img
+                    src="images/logo.jpg"
+                    alt="Affordable Heating and Air"
+                >
 
                 <p>
                     Affordable Heating and Air provides heating, cooling,
@@ -1422,9 +1826,12 @@
 
             </div>
 
+
             <div>
 
-                <h3>HVAC Pages</h3>
+                <h3>
+                    HVAC Pages
+                </h3>
 
                 <ul class="footer-links">
 
@@ -1474,9 +1881,12 @@
 
             </div>
 
+
             <div>
 
-                <h3>Contact</h3>
+                <h3>
+                    Contact
+                </h3>
 
                 <ul class="footer-links">
 
@@ -1495,17 +1905,21 @@
                     </li>
 
                     <li>
-                        <a href="https://affordableairla.com/"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            affordableairla.com
+                        <a
+                            href="https://affordableairla.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Official Website
                         </a>
                     </li>
 
                     <li>
-                        <a href="https://maps.app.goo.gl/AmnAG3GCtMLZFQca6"
-                           target="_blank"
-                           rel="noopener noreferrer">
+                        <a
+                            href="https://maps.app.goo.gl/AmnAG3GCtMLZFQca6"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             Google Maps
                         </a>
                     </li>
@@ -1514,7 +1928,9 @@
 
             </div>
 
+
         </div>
+
 
         <div class="container copyright">
 
